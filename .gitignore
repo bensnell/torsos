@@ -3,10 +3,18 @@
 
 # Text files
 *.txt
+*.xml
+
+# Machine Learning
+*.sqlite3
+
+# Python scripts
+*.py
 
 # Images
 *.png
 *.jpg
+*.jpeg
 
 # Fonts
 *.ttf
