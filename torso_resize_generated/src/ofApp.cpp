@@ -3,15 +3,16 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    string path = "../../../../../../../../../Volumes/BenSnell/generated_torsos/generated_torsos_15k"; // path to higher directory
-    dir = ofDirectory(path);
+    // source of photos to manipulate
+    string srcPath = "../../../../../../../../../Volumes/BenSnell/" + highDir + "/" + srcFolder; // path to higher directory
+    dir = ofDirectory(srcPath);
     dir.listDir();
     
     // iterate through each view
     for (int i = 0; i < dir.size(); i++) {
         
         ofDirectory subDir(dir.getPath(i)); // view folder
-        subDir.allowExt("jpg");
+        subDir.allowExt(srcType);
         subDir.listDir();
         
         for (int j = 0, end = subDir.size(); j < end; j++) {
@@ -38,7 +39,7 @@ void ofApp::setup(){
             img.update();
             
             string name = dir.getName(counter);
-            string newpath = "../../../../../../../../../Volumes/BenSnell/generated_torsos/" + folderName + "/" + dir.getName(i) + "/" +subDir.getName(j);
+            string newpath = "../../../../../../../../../Volumes/BenSnell/" + highDir + "/" + dstFolder + "/" + dir.getName(i) + "/" + subDir.getName(j);
             
             // Save image
             img.save(newpath); // may not save properly

@@ -3,22 +3,22 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    string path = "../../../../../../../../../Volumes/BenSnell/torsos-7k/photos-jpg"; // source directory
-    dir = ofDirectory(path);
-//    dir.allowExt("PNG");
-//    dir.allowExt("png");
-    dir.allowExt("jpg");
+    dir = ofDirectory(dirPath + srcFolder);
+    dir.allowExt(srcType);
     dir.listDir();
     
-//    for (int i = 0; i < dir.size(); i++) {
-//        ofImage img(dir.getFile(i));
-//        img.resize(340, 510);
-//        string name = dir.getName(i);
-//        string newpath = "../../../../../../../../../Volumes/BenSnell/torsos-7k/newphotos-jpg/" + (dir.getName(i)).substr(0, 11) + ".jpg";
-//        img.save(newpath);
-////        cout << newpath << endl;
-//        img.clear();
-//    }
+    for (int i = 0; i < dir.size(); i++) {
+        ofImage img(dir.getFile(i));
+        img.resize(imgW, imgH);
+        string name = dir.getName(i);
+        string newpath = dirPath + dstFolder + "/" + (dir.getName(i)).substr(0, 11) + ".jpg";
+        img.save(newpath);
+        img.clear();
+        
+        if (i % 100 == 0) cout << "Saved " + ofToString(i) + " / " + ofToString(dir.size()) + " photos";
+    }
+    
+    ofExit();
     
 }
 
@@ -31,37 +31,37 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-    ofImage img(dir.getFile(counter));
-    img.setImageType(OF_IMAGE_GRAYSCALE); // turn image black and white
-    img.resize(imgW, imgH);
-    
-    // equalize the histogram
-    // search for darkest and lightest greys
-    int nPixels = img.getPixels().size();
-    int minBrightness = 255;
-    int maxBrightness = 0;
-    ofPixelsRef pixelRef = img.getPixels();
-    for (int i = 0; i < nPixels; i++) {
-        int val = int(pixelRef[i]);
-        if (val < minBrightness) minBrightness = val;
-        if (val > maxBrightness) maxBrightness = val;
-    }
-    // equalize all pixels
-    for (int i = 0; i < nPixels; i++) {
-        pixelRef[i] = int((pixelRef[i] - minBrightness) / float(maxBrightness - minBrightness) * 255.);
-    }
-    img.update();
-    
-    img.draw(0, 0);
-    string name = dir.getName(counter);
-    string newpath = "../../../../../../../../../Volumes/BenSnell/torsos-7k/" + folderName + "/" + (dir.getName(counter)).substr(0, 11) + ".jpg";
-//    img.save(newpath); // may not save properly
-    ofSaveScreen(newpath);
-    //        cout << newpath << endl;
-    img.clear();
-    counter++;
-
-    if(counter == dir.size()) exit();
+//    ofImage img(dir.getFile(counter));
+//    img.setImageType(OF_IMAGE_GRAYSCALE); // turn image black and white
+//    img.resize(imgW, imgH);
+//    
+//    // equalize the histogram
+//    // search for darkest and lightest greys
+//    int nPixels = img.getPixels().size();
+//    int minBrightness = 255;
+//    int maxBrightness = 0;
+//    ofPixelsRef pixelRef = img.getPixels();
+//    for (int i = 0; i < nPixels; i++) {
+//        int val = int(pixelRef[i]);
+//        if (val < minBrightness) minBrightness = val;
+//        if (val > maxBrightness) maxBrightness = val;
+//    }
+//    // equalize all pixels
+//    for (int i = 0; i < nPixels; i++) {
+//        pixelRef[i] = int((pixelRef[i] - minBrightness) / float(maxBrightness - minBrightness) * 255.);
+//    }
+//    img.update();
+//    
+//    img.draw(0, 0);
+//    string name = dir.getName(counter);
+//    string newpath = "../../../../../../../../../Volumes/BenSnell/torsos-7k/" + folderName + "/" + (dir.getName(counter)).substr(0, 11) + ".jpg";
+////    img.save(newpath); // may not save properly
+//    ofSaveScreen(newpath);
+//    //        cout << newpath << endl;
+//    img.clear();
+//    counter++;
+//
+//    if(counter == dir.size()) exit();
     
     
 }

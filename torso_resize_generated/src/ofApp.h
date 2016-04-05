@@ -24,10 +24,14 @@ class ofApp : public ofBaseApp{
     int counter = 0;
     ofDirectory dir;
     
-    int imgW = 340;
-    int imgH = 510;
+    int imgW = 170;
+    int imgH = 255;
     
-    string folderName = "photos-jpg-bw-equalize";
+    string highDir = "generated_torsos_2";
+    string srcFolder = "gen_torsos_15k";
+    string dstFolder = "gen_torsos_15k_bw_lowres";
+    string srcType = "jpg";
+    string dstType = "jpg";
     
 };
 

@@ -8,11 +8,11 @@ void ofApp::setup() {
 	ofSetFrameRate(120); // ?
     
     // setup torso finder
-    finder.setup("haarcascade_frontalface_default.xml");
+    finder.setup("ojoD.xml");
     finder.setPreset(ObjectFinder::Accurate); // Fast, Accurate, Sensitive
     
     // load directory of images
-    string srcDirPath = "../../../../../../../../../Volumes/BenSnell/torsos-7k/photos-jpg-bw-equalize";
+    string srcDirPath = "/Volumes/BenSnell/torsos-7k/photos-jpg-bw-eq";
     dir.open(srcDirPath);
     dir.allowExt("jpg");
     dir.listDir(); // populate directory

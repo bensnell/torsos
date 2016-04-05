@@ -23,10 +23,18 @@ class ofApp : public ofBaseApp{
 
     ofDirectory dir;
     
-    int imgW = 340;
-    int imgH = 510;
+    // scale
+    float scale = 0.5;
     
-    string folderName = "generated_torsos_15k_bw";
+    int imgW = 340 * scale;
+    int imgH = 510 * scale;
+    
+    // directory path
+    string dirPath = "/Volumes/BenSnell/torsos-7k/";
+    string srcFolder = "photos-jpg-bw-eq";
+    string srcType = "jpg";
+    string dstFolder = "photos-jpg-bw-eq-lowres";
+    string dstType = "jpg";
     
 };
 
